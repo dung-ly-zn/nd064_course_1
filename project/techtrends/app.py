@@ -13,7 +13,8 @@ connection_count = 0
 def get_db_connection():
     connection = sqlite3.connect('database.db')
     connection.row_factory = sqlite3.Row
-    connection_count += 1
+    global connection_count
+    connection_count = connection_count + 1
     return connection
 
 # Function to get a post using its ID
