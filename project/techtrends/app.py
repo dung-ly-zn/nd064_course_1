@@ -92,7 +92,7 @@ def metrics():
     posts = connection.execute('SELECT * FROM posts').fetchall()
     connection.close()
     response = app.response_class(
-            response=json.dumps({"db_connection_count":connection_count,"post_count":posts.len()}),
+            response=json.dumps({"db_connection_count":connection_count,"post_count":len(posts)}),
             status=200,
             mimetype='application/json'
     )
@@ -101,5 +101,9 @@ def metrics():
 # start the application on port 3111
 if __name__ == "__main__":
    # Stream logs to stdout at DEBUG level
-   logging.basicConfig(level=logging.DEBUG, stream=sys.stdout)
+   logging.basicConfig(
+       format='%(asctime)s, %(message)s',
+       datefmt='%m/%d/%Y, %H:%M:%S',
+       level=logging.DEBUG,
+       stream=sys.stdout)
    app.run(host='0.0.0.0', port='3111')
