@@ -18,7 +18,7 @@ spec:
   template:
     spec:
       containers:
-        image: techtrends:latest
+      - image: techtrends:latest
         imagePullPolicy: IfNotPresent
         name: techtrends
         ports:
